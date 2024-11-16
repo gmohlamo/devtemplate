@@ -16,6 +16,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash 
 nvim --headless "+Lazy! update" +qa && nvim --headless +MasonInstallAll +qa
 # Setup JDK
 echo 'export PATH="$PATH:$HOME/jdk/bin"' >> ~/.bashrc
+echo 'alias vim=nvim' >> ~/.bashrc
 
 # Start listener
-nuhup bash -c 'nvim --listen 0.0.0.0:9001 --headless &'
+nohup bash -c 'nvim --listen 0.0.0.0:9001 --headless &'
