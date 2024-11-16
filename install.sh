@@ -9,4 +9,13 @@ mkdir ~/.local/openjdk && mv openjdk/* ~/.local/openjdk/
 tar -xzvf openjdk-22.tar.gz
 mv jdk-22.0.2 ~/jdk
 
+# install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash && source ~/.nvm/nvm.sh && nvm install --lts
+
+# install NvChad
+nvim --headless "+Lazy! update" +qa && nvim --headless +MasonInstallAll +qa
+# Setup JDK
 echo 'export PATH="$PATH:$HOME/jdk/bin"' >> ~/.bashrc
+
+# Start listener
+nuhup bash -c 'nvim --listen 0.0.0.0:9001 --headless &'
