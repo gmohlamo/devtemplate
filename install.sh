@@ -30,10 +30,12 @@ python3 -m pip install --user --upgrade pynvim
 
 
 
-# install NvChad
-nvim --headless "+Lazy! update" +qa
+# install golang
+wget https://go.dev/dl/go1.23.3.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.23.3.linux-amd64.tar.gz
+
+
 # Setup JDK
-echo "export JAVA_HOME=$HOME/jdk" >> ~/.bashrc
 echo 'alias vim=nvim' >> ~/.bashrc
 cd $HOME
 # Setup JDTLS
@@ -41,7 +43,10 @@ wget --output-document=jdtls.tar.gz https://www.eclipse.org/downloads/download.p
 mkdir $HOME/.local/jdtls
 mv jdtls.tar.gz $HOME/.local/jdtls
 tar -xzvf $HOME/.local/jdtls/jdtls.tar.gz --directory="$HOME/.local/jdtls/"
-echo 'export PATH="$PATH:$HOME/jdk/bin:$HOME/.local/jdtls/bin"' >> ~/.bashrc
+echo "export JAVA_HOME=$HOME/jdk" >> ~/.bashrc
+echo 'export PATH="$PATH::$HOME/jdk/bin:$HOME/.local/jdtls/bin:/usr/local/go/bin"' >> ~/.bashrc
+# install NvChad
+nvim --headless "+Lazy! update" +qa
 
 # Start listener
 nohup bash -c 'nvim --listen 0.0.0.0:9001 --headless &'
