@@ -40,8 +40,7 @@ cd $HOME
 wget --output-document=jdtls.tar.gz https://www.eclipse.org/downloads/download.php?file=/jdtls/snapshots/jdt-language-server-latest.tar.gz
 mkdir $HOME/.local/jdtls
 mv jdtls.tar.gz $HOME/.local/jdtls
-cd $HOME/.local/jdtls
-tar -xzvf jdtls 
+tar -xzvf $HOME/.local/jdtls/jdtls.tar.gz --directory="$HOME/.local/jdtls/"
 echo 'export PATH="$PATH:$HOME/jdk/bin:$HOME/.local/jdtls/bin"' >> ~/.bashrc
 
 # Start listener
