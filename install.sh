@@ -31,11 +31,18 @@ python3 -m pip install --user --upgrade pynvim
 
 
 # install NvChad
-nvim --headless "+Lazy! update" +qa && nvim --headless +MasonInstallAll +qa
+nvim --headless "+Lazy! update" +qa
 # Setup JDK
-echo 'export PATH="$PATH:$HOME/jdk/bin"' >> ~/.bashrc
-echo "export JAVA_HOME=$HOME/.local/openjdk" >> ~/.bashrc
+echo "export JAVA_HOME=$HOME/jdk" >> ~/.bashrc
 echo 'alias vim=nvim' >> ~/.bashrc
+cd $HOME
+# Setup JDTLS
+wget --output-document=jdtls.tar.gz https://www.eclipse.org/downloads/download.php?file=/jdtls/snapshots/jdt-language-server-latest.tar.gz
+mkdir $HOME/.local/jdtls
+mv jdtls.tar.gz $HOME/.local/jdtls
+cd $HOME/.local/jdtls
+tar -xzvf jdtls 
+echo 'export PATH="$PATH:$HOME/jdk/bin:$HOME/.local/jdtls/bin"' >> ~/.bashrc
 
 # Start listener
 nohup bash -c 'nvim --listen 0.0.0.0:9001 --headless &'
